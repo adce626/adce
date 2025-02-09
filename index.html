@@ -1,100 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anonymous Identity</title>
-  <meta name="description" content="Cybersecurity Specialist, Mobile Communications Engineer, and CTF Enthusiast.">
+  <title>ADCE626 | Cyber Ninja</title>
+  <meta name="description" content="هاكر أخلاقي، صائد ثغرات، محترف CTF وأمن سيبراني">
 
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+  <!-- روابط CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --neon-blue: #00f3ff;
+      --cyber-red: #ff073a;
+      --glitch-text: rgb(255, 0, 150);
+    }
     body {
-      background-color: #008080;
+      background: var(--main-bg);
       color: white;
+      font-family: 'Cairo', sans-serif;
+      overflow-x: hidden;
+      text-align: center;
+      cursor: crosshair;
     }
-    .avatar-img {
-      border-radius: 50%;
-      width: 150px;
-      height: 150px;
-    }
-    .navbar-brand {
-      color: #fff;
-      font-size: 2rem;
-    }
-    .page-heading h1 {
+    .glitch {
       font-size: 3rem;
       font-weight: bold;
-      color: #fff;
+      color: var(--glitch-text);
+      animation: glitch 0.5s infinite alternate;
     }
-    .social-icons a {
-      color: white;
-      margin: 0 10px;
-      font-size: 1.5rem;
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red; }
+      100% { text-shadow: -2px -2px cyan; }
     }
-    .social-icons a:hover {
-      color: #0085A1;
+    .cyber-border {
+      border: 3px solid var(--neon-blue);
+      box-shadow: 0 0 15px var(--neon-blue), inset 0 0 15px var(--neon-blue);
+      animation: glow 2s infinite alternate;
+      padding: 20px;
+      display: inline-block;
     }
-    footer {
-      margin-top: 50px;
+    .avatar-img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid var(--cyber-red);
+      filter: drop-shadow(0 0 10px var(--cyber-red));
+      transition: transform 0.5s;
+    }
+    .avatar-img:hover {
+      transform: rotate(360deg);
+    }
+    .cyber-button {
+      background: black;
+      border: 2px solid var(--neon-blue);
+      padding: 10px 30px;
+      color: var(--neon-blue);
+      transition: 0.5s;
+      margin: 10px;
+      display: inline-block;
+    }
+    .cyber-button:hover {
+      background: var(--neon-blue);
+      color: black;
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
+    .projects {
+      margin-top: 30px;
+      text-align: center;
+    }
+    .project-card {
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid var(--cyber-red);
+      box-shadow: 0 0 10px var(--cyber-red);
+      padding: 15px;
+      margin: 20px auto;
+      width: 60%;
+      text-align: center;
+    }
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
     }
   </style>
 </head>
-
 <body>
-  <nav class="navbar navbar-expand-xl navbar-light fixed-top navbar-custom">
-    <a class="navbar-brand" href="https://adce626.github.io/">Anonymous Identity</a>
-  </nav>
-
-  <header class="header-section text-center mt-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-4">
-          <div class="avatar-container">
-            <a href="https://adce626.github.io/">
-              <img src="https://raw.githubusercontent.com/adce626/adce/main/adce626.png" alt="Avatar" class="avatar-img">
-
-            </a>
-          </div>
-          <h1>Anonymous Identity</h1>
-          <hr class="my-4">
-          <p class="lead">adce626 is a skilled CTF participant, OSINT expert, and vulnerability hunter, specializing in cybersecurity and hacking challenges.</p>
-        </div>
-      </div>
+  <canvas class="matrix-bg" id="matrix"></canvas>
+  <header class="py-5">
+    <div class="cyber-border">
+      <img src="https://raw.githubusercontent.com/adce626/adce/main/adce626.png" alt="Avatar" class="avatar-img mb-4">
+      <h1 class="glitch">ADCE626</h1>
+      <p class="fs-4">نينجا السيبراني | صياد الثغرات | بطل CTF</p>
     </div>
   </header>
-
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col text-center">
-        <h2>Connect with Me</h2>
-        <div class="social-icons">
-          <a href="https://x.com/adce626" title="X">
-            <i class="fab fa-x fa-2x"></i>
-          </a>
-          <a href="https://youtube.com/@Adce626" title="YouTube">
-            <i class="fab fa-youtube fa-2x"></i>
-          </a>
-          <a href="https://github.com/adce626" title="GitHub">
-            <i class="fab fa-github fa-2x"></i>
-          </a>
-          <a href="https://ctflearn.com/user/adce626" title="CTFlearn">
-            <i class="fas fa-graduation-cap fa-2x"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <footer class="text-center mt-5">
-    <p>Check out my profile: <a href="https://adce626.bio.link/" style="color: red;">adce626.bio.link</a></p>
-    <p>&copy; 2025 Anonymous Identity</p>
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <section>
+    <h2>روابط التواصل</h2>
+    <a href="https://x.com/adce626" class="cyber-button">X</a>
+    <a href="https://github.com/adce626" class="cyber-button">GitHub</a>
+    <a href="https://ctflearn.com/user/adce626" class="cyber-button">CTF</a>
+  </section>
+  <section class="projects">
+    <h2>مشاريعي</h2>
+    <div class="project-card">🔹 مشروع OSINT متقدم لتحليل البيانات المفتوحة</div>
+    <div class="project-card">🔹 تطوير أدوات خاصة لاختبار أمان الشبكات</div>
+    <div class="project-card">🔹 مسابقات CTF وحلول متقدمة للاختراق الأخلاقي</div>
+  </section>
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const chars = '01';
+    const drops = Array(100).fill(1);
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0F0';
+      drops.forEach((drop, i) => {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * 20, drop * 20);
+        if (drop * 20 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      });
+    }
+    setInterval(drawMatrix, 50);
+  </script>
 </body>
-
 </html>
