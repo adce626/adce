@@ -7,16 +7,18 @@
     <style>
         :root {
             --primary-color: #00ff88;
-            --background-color: #0a0a0a;
-            --text-color: #e0e0e0;
+            --background-color-dark: #0a0a0a;
+            --background-color-light: #ffffff;
+            --text-color-dark: #e0e0e0;
+            --text-color-light: #333333;
             --accent-color: #00ff88;
             --border-color: rgba(0, 255, 136, 0.2);
         }
 
         body {
             font-family: 'Inter', 'Segoe UI', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+            background-color: var(--background-color-dark);
+            color: var(--text-color-dark);
             margin: 0;
             padding: 30px;
             max-width: 1000px;
@@ -33,7 +35,7 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .search-container {
+        .search-container, .filter-container {
             text-align: center;
             margin-bottom: 40px;
         }
@@ -45,7 +47,7 @@
             background: rgba(0, 255, 136, 0.05);
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            color: var(--text-color);
+            color: var(--text-color-dark);
             font-size: 1.2em;
             transition: 0.3s;
         }
@@ -55,16 +57,6 @@
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        .filter-container {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        #dorkList {
-            list-style: none;
-            padding: 0;
         }
 
         li {
@@ -83,7 +75,7 @@
         }
 
         a {
-            color: var(--text-color);
+            color: var(--text-color-dark);
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
@@ -92,36 +84,6 @@
         a:hover {
             color: var(--primary-color);
             text-shadow: 0 0 5px var(--accent-color);
-        }
-
-        p.description {
-            color: #888;
-            font-size: 0.9em;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-
-        section {
-            margin-top: 50px;
-            border-top: 1px solid var(--border-color);
-            padding-top: 30px;
-        }
-
-        h2 {
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-
-        .link-list a {
-            display: inline-block;
-            margin: 10px 0;
-            color: var(--primary-color);
-        }
-
-        .link-list a:hover {
-            text-decoration: underline;
-            color: #00ffaa;
         }
 
         footer {
@@ -144,12 +106,25 @@
                 width: 100%;
             }
         }
+
+        .theme-toggle-btn {
+            background-color: var(--accent-color);
+            color: var(--background-color-light);
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <h1>Deep Google Search - Bug Bounty</h1>
+
+<button class="theme-toggle-btn" onclick="toggleTheme()">🌙 Switch to Light Mode</button>
 
 <div class="search-container">
     <label for="domainInput">🔍 Enter your domain or keyword:</label><br><br>
@@ -275,6 +250,21 @@ function filterDorks() {
         const text = item.innerText.toLowerCase();
         item.style.display = text.includes(filter) ? "block" : "none";
     });
+}
+
+function toggleTheme() {
+    const isDarkMode = document.body.style.backgroundColor === 'rgb(10, 10, 10)';
+    if (isDarkMode) {
+        document.body.style.backgroundColor = '#ffffff';
+        document.body.style.color = '#333333';
+        document.querySelectorAll('input').forEach(input => input.style.color = '#333333');
+        document.querySelector('.theme-toggle-btn').textContent = "🌙 Switch to Dark Mode";
+    } else {
+        document.body.style.backgroundColor = '#0a0a0a';
+        document.body.style.color = '#e0e0e0';
+        document.querySelectorAll('input').forEach(input => input.style.color = '#e0e0e0');
+        document.querySelector('.theme-toggle-btn').textContent = "🌞 Switch to Light Mode";
+    }
 }
 
 fetchDorks();
